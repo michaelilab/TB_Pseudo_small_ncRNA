@@ -1,124 +1,19 @@
+
 #SCRIPT TO Extract Psi values with list works with Norm_Uprofile_ files
 rm(list=ls(all=TRUE))
 #INDICATE pattern for COUNT files, the list of analyzed RNAs read for folder
 count_files <- "^Norm_Uprofile_" # Output of the previous script
 # INDICATE PATTERN FOR REFERENCE POSITIONS FILE
-#pos_list_pattern <- "modList"  #actual file: Hs_rRNA_modList.csv in exttDataDir //!\\
-#pos_list_pattern <-"Ld_rRNA_modList"
-#pos_list_pattern <-"LM_rRNA_modList"
-pos_list_pattern <-"TB_rRNA_modList"
+
+pos_list_pattern <-"Ref/TB_rRNA_modList"
 # INDICATE RNA_List pattern
 RNA_list_pattern <-"RNA_list"
 
 ####### Input area #######
-#extDataDir <- "Path/to/input"	//!\\
-#ProjectDir <- "Path/to/output" //!\\
+extDataDir <- "Path/to/input"	//!\\
+ProjectDir <- "Path/to/output" //!\\
 
-#path to input
-#extDataDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#path to output
-#ProjectDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/"
-AnnotDir<-"C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#AnnotDir<-"C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files"
-
-
-#R1
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R1"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R1"
-#extDataDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R1"
-#ProjectDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R1"
-
-#R2
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R2"
-#extDataDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R2"
-#ProjectDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/R2"
-
-#extDataDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/PRS/rRNA/GoodPairs"
-#ProjectDir <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/PRS/rRNA/GoodPairs_Results"
-
-#extDataDir <- "C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LD_rRNA/GoodPairs"
-#ProjectDir <- "C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LD_rRNA/GoodPairs_Results"
-
-#extDataDir <- "C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LD_rRNA/R2"
-#ProjectDir <- "C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LD_rRNA/R2_Results"
-
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_21Feb2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_21Feb2021/GoodPairs_Results"
-
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_21Feb2021/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_21Feb2021/R2_Results"
-
-
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_21Feb2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_21Feb2021/GoodPairs_Results"
-
-##R2
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_21Feb2021/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_21Feb2021/R2_Results"
-
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_21Feb2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_21Feb2021/GoodPairs_Results"
-
-##R2
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_21Feb2021/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/HS_rRNA_21Feb2021/R2_Results"
-
-#C:\Users\User\OneDrive - Bar Ilan University\Bioinfo Computer\Shula\HydraPsi\Sequencing_21March2021\LD_rRNA
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LD_rRNA/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LD_rRNA/GoodPairs_Results"
-
-##R2
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LD_rRNA/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LD_rRNA/R2_Results"
-
-#C:\Users\User\OneDrive - Bar Ilan University\Bioinfo Computer\Shula\HydraPsi\Sequencing_21March2021\LM_rRNA
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LM_rRNA/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LM_rRNA/GoodPairs_Results"
-
-##R2
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LM_rRNA/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Sequencing_21March2021/LM_rRNA/R2_Results"
-
-#July 15 2021
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_15July2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_15July2021/GoodPairs_Results"
-
-#Aug 09 2021
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_09Aug2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_09Aug2021/GoodPairs_Results"
-
-#Aug 09 2021
-##goodpairs
-extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_09Aug2021/GoodPairs"
-ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LM_rRNA_09Aug2021/GoodPairs_Results"
-
-
-#Sept 14 2021
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_14Sept2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_14Sept2021/GoodPairs_Results"
-
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_14Sept2021/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Hs_rRNA_14Sept2021/R2_Results"
-
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_14Sept2021/GoodPairs"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_14Sept2021/GoodPairs_Results"
-
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_14Sept2021/R2"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_14Sept2021/R2_Results"
-
-extDataDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_09Jan2022/GoodPairs"
-ProjectDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/TB_rRNA_09Jan2022/GoodPairs_Results"
-
+AnnotDir<-"Ref/"
 ####### Treatment area ######
 setwd(extDataDir)
 
