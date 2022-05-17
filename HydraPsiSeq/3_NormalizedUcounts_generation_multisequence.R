@@ -1,30 +1,19 @@
 #SCRIPT TO calculate Normalized U profile
+# HydraPsiSeqPipeline
+# This script came from the repoistory - https://github.com/FlorianPichot/HydraPsiSeqPipeline
+# This script was modified to our needs. All the scripts has been used on a local computer, with relatives paths for the inputs and outputs. 
+# If you want to use these scripts on your computer, edit the inputs and directories names along the script.
 rm(list=ls(all=TRUE)) #REMOVE ALL Variables
 
 ####### Input area #######
-##path to input LAPTOP
-#extDataDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
+##path to input 
+extDataDir <- "Input"
 ##path to output
-#ProjectDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/"
-
-#biu
-
-##goodpairs
-#extDataDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#ProjectDir <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/"
-
-
+ProjectDir <- "Output"
 
 
 ##########Annotation Files#########################
-#annot_file="C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/TB_rRNA_annot.txt"
-#annot_file="C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/TB_rRNA_annot.txt"
-
-#annot_file="C:/Users/user/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/La_predicted_rRNA_pseudos.txt"
-
-annot_file="C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/La_predicted_rRNA_pseudos.txt"
-
-#annot_file="C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Mm_rRNA_annot.txt"
+annot_file="Reference/TB_rRNA_annot.txt"
 annot<-read.table(annot_file, sep="\t", header = TRUE)
 
 if (!requireNamespace("ggplot2", quietly = TRUE)) {install.packages("ggplot2")}
@@ -47,13 +36,11 @@ dir.create (ResultsDir, showWarnings = FALSE)  #CREATE PreAnalysis folder
 #LIST FOLDERS TO TREAT to check if OK
 DataDirs <- list.dirs(extDataDir, full.names = TRUE, recursive = FALSE)
 DataDirs					#FULL path format
+
 #INDICATE pattern for COUNTand COVERAGE  files, the list of analyzed RNAs is the same for all folders
-#count_files <- "^UCount5prime_" #indicate just a pattern to use
 coverage_files <- "^coverage_" #indicate just a pattern to use
 
-#mylibs=gsub(pattern = ".sorted.init",replacement = "",x=list.files(pattern = "init"))
 count_files<- ".sorted.init$"
-#coverage_files <- ".sorted.genomecov$"
 
 #z=DataDirs[1] #for tests
 
@@ -69,15 +56,8 @@ for (z in DataDirs) {
 
   ReadsStatSample<- data.frame(matrix(ncol = 1, nrow = 0))
   colnames(ReadsStatSample)<-c("RNA")
-  #y="7SL_good_pairs"
-  #y="7SL"
-  #y="SmallRNA_good_pairs"
-  #y="smallRNA"
-  #y="UsnRNA_good_pairs"
   y="rRNA_good_pairs"#only type
-  #y="rRNA"
-  #y="genome_good_pairs"
-  #for (y in type) {
+
   Count_file    <- list.files(z, pattern=paste0("*",y,count_files), recursive=F, full.names = TRUE) #".*" one ore more any characters
   print(Count_file)
   Coverage_file <- list.files(z, pattern=paste0(coverage_files,"*"), recursive=F, full.names = TRUE)  
@@ -87,9 +67,11 @@ for (z in DataDirs) {
   #reading file from csv with names of colums and rows
   sample=read.csv(Count_file, sep="\t", header = FALSE)
   gene_list<-unique(sample[1])
-  #w= gene_list$V1[1]
+  
+  #w= gene_list$V1[1] # for testing
   for (w in gene_list$V1) {
     print(w)
+    #not including the Tb maxicircle  
     if (w=="gi|343546|gb|M94286.1|TRBKPGEN") {
       next
     }
@@ -260,7 +242,6 @@ dev.off()
   pdf(paste0(SampleDir,"/ZoomAllBasesDistribution_",w,".pdf"),width=pdf.width,height=pdf.height,paper='special')
   print(p)
   dev.off()
-#}
 
 }
 
@@ -275,7 +256,7 @@ dev.off()
 
   }
 
-#}
+
 
 
 output_file <- paste0(ResultsDir,"/GlobalStat.csv")
