@@ -1,5 +1,5 @@
 # HydraPsiSeqPipeline
-# This script came from the repoistory - https://github.com/FlorianPichot/HydraPsiSeqPipeline
+# This script came from the repository - https://github.com/FlorianPichot/HydraPsiSeqPipeline
 # This script was modified to our needs. All the scripts has been used on a local computer, with relatives paths for the inputs and outputs. 
 # If you want to use these scripts on your computer, edit the inputs and directories names along the script.
 
