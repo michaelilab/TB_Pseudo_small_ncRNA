@@ -3,15 +3,12 @@
 #it calculates the scores A,B and C and writes them into a table
 ##########################################################################
 
-directory <- "C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_01March2022/TB_smallRNA/Input"
+directory <- "Input"
 setwd(directory)
 
-ResultsDir<- "C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_01March2022/TB_smallRNA/Output"
+ResultsDir<- "Output"
 
-#len_file="C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/DB/TB/TB_smallRNA_lengths.txt"
-#len<-read.table(len_file, sep="\t", header = TRUE)
-
-myfasta<-read.fasta("C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/DB/TB/TB_small_RNAs_DB_w_praveen.fa",as.string = FALSE,set.attributes = FALSE)
+myfasta<-read.fasta("Ref/TB/TB_small_RNAs_DB_w_praveen.fa",as.string = FALSE,set.attributes = FALSE)
 
 ### dependencies
 if (!require(seqinr)) install.packages("seqinr")
