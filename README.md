@@ -16,5 +16,5 @@ General pipeline:
  
 **Ribomethseq pipeline**
 
-Ribomethseq pipeline implements the RiboMethSeq scoring analysis as described in Birkedal et al. 2015
+Ribomethseq pipeline implements the RiboMethSeq scoring analysis as described in Birkedal et al. 2015 and Marchand et al. 2016
  
