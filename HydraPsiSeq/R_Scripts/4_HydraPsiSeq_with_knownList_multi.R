@@ -8,18 +8,10 @@ pos_list_pattern <- "modList"  #actual file: Hs_rRNA_modList.csv in exttDataDir 
 #RNA_list_pattern <-"RNA_list"
 
 ####### Input area #######
-#extDataDir <- "Path/to/input"	//!\\
-#ProjectDir <- "Path/to/output" //!\\
-
-#path to input
-#extDataDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-#path to output
-#ProjectDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/"
+extDataDir <- "Path/to/input"	//!\\
+ProjectDir <- "Path/to/output" //!\\
 
 AnnotDir<-"C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input"
-
-extDataDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LA_rRNA_10Jan2022/GoodPairs"
-ProjectDir <- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/LA_rRNA_10Jan2022/GoodPairs_Results"
 
 
 ####### Treatment area ######
@@ -38,9 +30,8 @@ dir.create (ResultsDir, showWarnings = FALSE)  #CREATE HydraPsiSeq folder
 ###########################################
 
 #FIND REFERENCE positions FILE
-#ModList_File <- list.files(AnnotDir, pattern=pos_list_pattern, recursive=FALSE, full.names = TRUE)
-#ModList_File<-"C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input/Mm_modList_pseudo_sites_Jan2022.txt"
-ModList_File<-"C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/Input/LA_modList_pseudo_sites.txt"
+
+ModList_File<-"DB/TB_rRNA_modList_pseudo_sites_05July2015.txt"
 
 #LIST FOLDERS
 DataDirs <- list.dirs(extDataDir, full.names = TRUE, recursive = FALSE)
