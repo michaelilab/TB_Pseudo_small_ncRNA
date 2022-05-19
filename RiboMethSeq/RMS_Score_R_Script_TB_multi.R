@@ -8,7 +8,7 @@ setwd(directory)
 
 ResultsDir<- "Output"
 
-myfasta<-read.fasta("Ref/TB/TB_small_RNAs_DB_w_praveen.fa",as.string = FALSE,set.attributes = FALSE)
+myfasta<-read.fasta("DB/TB_small_RNAs_DB.fa",as.string = FALSE,set.attributes = FALSE)
 
 ### dependencies
 if (!require(seqinr)) install.packages("seqinr")
