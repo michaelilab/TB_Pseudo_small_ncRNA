@@ -84,11 +84,10 @@ for (thisLib in mylibs){
     
     
     # extracting fasta base by base to be printed within the final table
-    #doesnt work- need to fix line 
     bp<-(unlist(unname(myfasta[gene]),rep(NA,length(myinit)-length(unlist(unname(myfasta[gene][[1]])))))) #move base pair by one in order to know that is the bp
    
     bp<-c(NA,bp)
-     mydf<-cbind.data.frame(g,myinit,myends,mycov,Sa,Sb,Sc,bp)
+    mydf<-cbind.data.frame(g,myinit,myends,mycov,Sa,Sb,Sc,bp)
     
     #mydf<-cbind.data.frame(mydf,annot)
     #colnames(mydf)<- c("5p","3p","cov","Sa","Sb","Sc","bp","rRNA","Loc","Count","modified",	"snoRNA",	"BP")
