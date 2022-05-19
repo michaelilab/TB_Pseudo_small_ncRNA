@@ -3,18 +3,15 @@
 #it calculates the scores A,B and C and writes them into a table
 ##########################################################################
 
-#directory <- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_09Dec2021/TB_rRNA/Input"
-#directory <- "C:/Users/Tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_09Dec2021/TB_rRNA/Input"
-directory <- "C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_01March2022/TB_rRNA/Input"
+
+directory <- "RiboMethSeq/RiboMethSeq_01March2022/TB_rRNA/Input"
 setwd(directory)
 
-#ResultsDir<- "C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_09Dec2021/TB_rRNA/Output/"
-#ResultsDir<- "C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_09Dec2021/TB_rRNA/Output/"
-ResultsDir<- "C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/RiboMethSeq/RiboMethSeq_01March2022/TB_rRNA/Output"
 
-#annot_file="C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/DB/TB/TB_rRNA_annot_Nm.txt"
-#annot_file="C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/DB/TB/TB_rRNA_annot_Nm.txt"
-annot_file="C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/DB/TB/TB_rRNA_annot_Nm.txt"
+ResultsDir<- "RiboMethSeq/RiboMethSeq_01March2022/TB_rRNA/Output"
+
+
+annot_file="DB/TB/TB_rRNA_annot_Nm.txt"
 annot<-read.table(annot_file, sep="\t", header = TRUE)
 
 ### dependencies
@@ -26,9 +23,8 @@ win_size=6
 rRNA_length=11171
 
 ### references 
-#myfasta<-read.fasta("C:/Users/User/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/TB_rRNA_chr2.fa",as.string = FALSE,set.attributes = FALSE)
-#myfasta<-read.fasta("C:/Users/tirza/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/TB_rRNA_chr2.fa",as.string = FALSE,set.attributes = FALSE)
-myfasta<-read.fasta("C:/Users/doniget/OneDrive - Bar Ilan University/Bioinfo Computer/Shula/HydraPsi/Files/TB_rRNA_chr2.fa",as.string = FALSE,set.attributes = FALSE)
+
+myfasta<-read.fasta("DB/TB_rRNA_chr2.fa",as.string = FALSE,set.attributes = FALSE)
 ### read all of the outputs from pre-processing
 mylibs=gsub(pattern = ".sorted.init",replacement = "",x=list.files(pattern = "init"))
 
@@ -95,5 +91,5 @@ for (thisLib in mylibs){
   
   mydf<-cbind.data.frame(mydf,annot)
   colnames(mydf)<- c("5p","3p","cov","Sa","Sb","Sc","bp","rRNA","Loc","Count","modified",	"snoRNA",	"BP")
-    write.csv(x =mydf ,file=paste0(ResultsDir,thisLib,".csv"))
+  write.csv(x =mydf ,file=paste0(ResultsDir,thisLib,".csv"))
 }
