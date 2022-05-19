@@ -1,26 +1,26 @@
 #!/usr/bin/env tcsh
 
-set path1="/home/ls/tirza/Michaeli/Sequencing_09Jan2022/"
+set path1="Sequencing_09Jan2022" # path to directory
 set type="rRNA"
-set path2="/home/ls/tirza/Michaeli/Scripts/"
-set snrna="/home/ls/tirza/Michaeli/DB/TB_rRNA"
-set file1="/home/ls/tirza/Michaeli/DB/rRNA.genome"
-set fasta="/home/ls/tirza/Michaeli/DB/TB_rRNA_chr2.fa"
+set path2="Scripts/" #path to Scripts
+set snrna="DB/TB_rRNA"
+set file1="DB/rRNA.genome"
+set fasta="DB/TB_rRNA_chr2.fa"
 
-foreach fastq_file ($path1/RawData/FR6[2,3]*ME*R1.fastq.gz)
+foreach fastq_file ($path1/RawData/*ME*R1.fastq.gz)
    echo $fastq_file
    set base=`basename $fastq_file|cut -f1,2 -d\_`
    echo $base
    set fastq_file2=`echo $fastq_file |sed -e 's/_R1/_R2/'` ;
    echo $fastq_file2
 
-   #smalt map $snrna $fastq_file $fastq_file2 > $base\_vs_$type.sam
+   smalt map $snrna $fastq_file $fastq_file2 > $base\_vs_$type.sam
 
-   #samtools view -f 0x02 -bS  $base\_vs_$type.sam > $base\_vs_$type\_good_pairs.bam
-   #rm $base\_vs_$type.sam
+   samtools view -f 0x02 -bS  $base\_vs_$type.sam > $base\_vs_$type\_good_pairs.bam
+   rm $base\_vs_$type.sam
 end
 
-foreach bam_file ($path1/Analysis/HydraPsiSeq_TB/$type/GoodPairs/FR63*_good_pairs.bam)
+foreach bam_file ($path1/Analysis/HydraPsiSeq_TB/$type/GoodPairs/*_good_pairs.bam)
     echo $bam_file
     set prefix=`basename $bam_file|cut -f1,2 -d\_`
     ##BAM_TO_BED
@@ -35,7 +35,7 @@ foreach bam_file ($path1/Analysis/HydraPsiSeq_TB/$type/GoodPairs/FR63*_good_pair
 end
 
 
-foreach init_file ($path1/Analysis/HydraPsiSeq_TB/$type/GoodPairs/FR6*.genomecov)
+foreach init_file ($path1/Analysis/HydraPsiSeq_TB/$type/GoodPairs/*.genomecov)
     set prefix=`basename $init_file|cut -f1,2 -d\_`
-    perl ~/Michaeli/Scripts/AddBP2GenomeCov.pl $fasta $init_file > coverage_$prefix\_vs_$type\_good_pairs.txt
+    perl $path2/AddBP2GenomeCov.pl $fasta $init_file > coverage_$prefix\_vs_$type\_good_pairs.txt
 end
