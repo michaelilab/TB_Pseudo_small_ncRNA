@@ -5,7 +5,7 @@ rm(list=ls(all=TRUE))
 count_files <- "^Norm_Uprofile_" # Output of the previous script
 # INDICATE PATTERN FOR REFERENCE POSITIONS FILE
 
-pos_list_pattern <-"Ref/TB_rRNA_modList"
+pos_list_pattern <-"DB/TB_rRNA_modList"
 # INDICATE RNA_List pattern
 RNA_list_pattern <-"RNA_list"
 
