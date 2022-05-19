@@ -1,14 +1,17 @@
 #!/usr/bin/env tcsh
 
-set path1="/home/ls/tirza/Michaeli/Sequencing_15Dec2021/"
+#Directory Structure:
+#Main_Directory/RawData # raw fastq files
+#Main_Directory/Analysis/RiboMethSeq_TB/rRNA #results files
 
-set path2="/home/ls/tirza/Michaeli/Scripts/"
-set snrna="/home/ls/tirza/Michaeli/DB/TB_rRNA"
-set file1="/home/ls/tirza/Michaeli/DB/rRNA.genome"
+set path1="Main_Directory/" #change to correct path
+set path2="Scripts/"
+set snrna="DB/TB_rRNA"
+set file1="DB/rRNA.genome"
 
 ####################################################################################
 
-foreach fastq_file ($path1/RawData/FR46*_ME_R1.fastq.gz)
+foreach fastq_file ($path1/RawData/*_ME_R1.fastq.gz)
    echo $fastq_file
    set base=`basename $fastq_file|cut -f1,2 -d\_`
    echo $base
