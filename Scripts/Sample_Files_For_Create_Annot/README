@@ -1,0 +1,4 @@
+Run the script as follows:
+CreateAnnotFile.pl TB_rRNA_chr2.fa TB_rRNA_chr2.coords.txt CD_known_Nms_example.txt > Annot_file.out
+
+Script currently supports a single rRNA sequence that is divide up into its subunits in the coords.txt file
