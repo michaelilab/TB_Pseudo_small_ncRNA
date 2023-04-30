@@ -18,10 +18,10 @@ foreach fastq_file ($path1/RawData/*_ME_R1.fastq.gz)
    set fastq_file2=`echo $fastq_file |sed -e 's/_R1/_R2/'` ;
    echo $fastq_file2
 
-   #smalt map $snrna $fastq_file $fastq_file2 > $base\_vs_rRNA.sam
+   smalt map $snrna $fastq_file $fastq_file2 > $base\_vs_rRNA.sam
 
-   #samtools view -f 0x02 -bS  $base\_vs_rRNA.sam > $base\_vs_rRNA_good_pairs.bam
-   #rm $base\_vs_rRNA.sam
+   samtools view -f 0x02 -bS  $base\_vs_rRNA.sam > $base\_vs_rRNA_good_pairs.bam
+   rm $base\_vs_rRNA.sam
 end
 ###################################################################################
 foreach bam_file ($path1/Analysis/RiboMethSeq_TB/rRNA/*.bam)
